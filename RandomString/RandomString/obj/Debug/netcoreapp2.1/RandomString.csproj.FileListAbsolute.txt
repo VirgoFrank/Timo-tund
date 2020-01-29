@@ -1,0 +1,16 @@
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\RandomString.deps.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\RandomString.runtimeconfig.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\RandomString.runtimeconfig.dev.json
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\RandomString.dll
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\bin\Debug\netcoreapp2.1\RandomString.pdb
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.csprojAssemblyReference.cache
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.RazorAssemblyInfo.cache
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.RazorAssemblyInfo.cs
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.AssemblyInfoInputs.cache
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.AssemblyInfo.cs
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.RazorTargetAssemblyInfo.cache
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.dll
+C:\Users\opilane\Desktop\New folder\RandomString\RandomString\obj\Debug\netcoreapp2.1\RandomString.pdb

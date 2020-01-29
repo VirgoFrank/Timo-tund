@@ -1,0 +1,16 @@
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\APIGateway.deps.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\APIGateway.runtimeconfig.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\APIGateway.runtimeconfig.dev.json
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\APIGateway.dll
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.csprojAssemblyReference.cache
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.RazorAssemblyInfo.cache
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.RazorAssemblyInfo.cs
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.AssemblyInfoInputs.cache
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.AssemblyInfo.cs
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.RazorTargetAssemblyInfo.cache
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\bin\Debug\netcoreapp2.1\APIGateway.pdb
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.dll
+C:\Users\opilane\Desktop\New folder\APIGateway\APIGateway\obj\Debug\netcoreapp2.1\APIGateway.pdb
