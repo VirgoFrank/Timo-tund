@@ -12666,11 +12666,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\opilane\\Desktop\\New folder\\APIGateway\\APIGateway\\APIGateway.csproj",
+      "projectUniqueName": "C:\\Users\\opilane\\Desktop\\Timo-tund\\APIGateway\\APIGateway\\APIGateway.csproj",
       "projectName": "APIGateway",
-      "projectPath": "C:\\Users\\opilane\\Desktop\\New folder\\APIGateway\\APIGateway\\APIGateway.csproj",
+      "projectPath": "C:\\Users\\opilane\\Desktop\\Timo-tund\\APIGateway\\APIGateway\\APIGateway.csproj",
       "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\opilane\\Desktop\\New folder\\APIGateway\\APIGateway\\obj\\",
+      "outputPath": "C:\\Users\\opilane\\Desktop\\Timo-tund\\APIGateway\\APIGateway\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <title>TODO</title>
-        <!-- <style>
+        <style>
             body { padding: 1em; }
             h1 { color: red; }
             .hidden { display: none !important; }
@@ -28,7 +28,7 @@
             .row input[type='text'] {width: 100%;}
             input[name='desc'] {display: block; margin:0.2em 0;}
             input[type='button'] {margin-left: 0.8em;}
-        </style> -->
+        </style>
     
     <!--[if gte mso 9]><xml>
     <mso:CustomDocumentProperties>
@@ -38,6 +38,20 @@
     </head>
 
 <body>
+	<div id="login-form">
+		<input type="text" name="username" value="timo.triisa@tptlive.ee2"></input>
+		<input type="password" name="password" value="qwe123"></input>
+		newtasks
+		<div class="newtask">
+				<input type="text" name="NewTitle">
+				<input type="text" name="NewDesc">
+			</div>
+		<button onClick="login()">Login</button>
+		<button onClick="register()">Register</button>
+	</div>
+
+
+
     <div id="app">
 		
 		<button onclick="save()">Add task</button>
@@ -49,14 +63,14 @@
 					<input type="checkbox" name="markedAsDone" onChange="changeCheckLabel(event)">
 				</label>
 				<div class="text">
-					<input type="text" name="title">
-					<input type="text" name="desc">
+					<input  name="title">
+					<input  name="desc">
 					
 				</div>
 				<input type="button" value="Delete">
                 <button onclick="TaskUpdate(event)" type="button" name="Update">Update</button>
                 
-                <textarea id="TextArea" cols="70" rows="20"></textarea>
+                <!-- <textarea id="TextArea" cols="70" rows="20"></textarea> -->
 			</div>
 		</div>
 		<button onclick="addTask()">Lisa uus</button>
@@ -140,10 +154,10 @@ class Demo2Api {
 			let row = document.querySelector("#todo-list > .row.hidden");
 			let newRow = row.cloneNode(true);
 			newRow.classList.remove("hidden");
-
 			
 			if(typeof task !== "undefined") {
 				newRow._task = new Task(task);
+
 				let cb = newRow.querySelector("input[name='markedAsDone']");
 				cb.checked = task.marked_as_done;
 				changeCheckLabel(cb);
@@ -161,40 +175,74 @@ class Demo2Api {
 		}
 
         function Get(){
-        //     api.sendRequest("/tasks", "GET", null, (tasks) => {
-		// 				clearTodoList();
-		// 				tasks.forEach(addTask);
-	
-		// })
 
-            let textArea = document.getElementById("TextArea");
-           // textArea.value = "222";
-                let get=  fetch('https://localhost:44318/tasks',{mode: 'cors'})
+			clearTodoList();
+              fetch('https://localhost:44318/tasks/')
             .then((response) => {
-                return response.text();
+				return response.json();
             })
             .then((data) => {
                 console.log(data);
-            });
-            textArea.value = get.text;
-
-           
+				let arr = data;
+				for(i = 0; i < arr.length; i++){
+					Add(arr[i]);
+				}
+            })
         }
 
-        function httpGet(theUrl)
-         {
-            const options = {
-					method: "GET",
-					headers: {
+
+		function Add(task) {
+			console.log(task);
+			let row = document.querySelector("#todo-list > .row.hidden");
+			let newRow = row.cloneNode(true);
+			newRow.classList.remove("hidden");
+			newRow.querySelector("input[name='title']").value = task.title;
+			newRow.querySelector("input[name='desc']").value = task.desc;
+
+			let cb = newRow.querySelector("input[name='markedAsDone']");
+				cb.checked = task.isChecked;
+				
+
+			document.querySelector("#todo-list").appendChild(newRow);
+		}
+
+		// function login() {
+		// 	let username = document.querySelector("input[name='username']").value;
+		// 	let password = document.querySelector("input[name='password']").value;
+			
+		// 	api.sendRequest("/users/get-token","POST",{username, password},
+		// 		(user) => {
+		// 			console.log(user);
+		// 			//api.token = user.access_token;
+					
+		// 			api.sendRequest("/tasks", "GET", null, (tasks) => {
+		// 				clearTodoList();
+		// 				tasks.forEach(addTask);
+						
+		// 			});
+		// 		}
+		// 	);
+		
+		// }
+
+		function save(){
+		let title = document.querySelector("input[name='NewTitle']").value;
+		let desc = document.querySelector("input[name='NewDesc']").value;
+			fetch("https://localhost:44318/tasks/", {method:"POST",body:JSON.stringify({title,desc,isChecked: false,
+        userId: "1"}),headers: {
 						"Content-Type": "application/json", // ütleb, et see on json
-					}
-				};
+					},})
+					clearTodoList();
+			Get();
+		}
 
-
-
-           let response = fetch(theUrl, options)
-			let text = response.json();	           
-        return text;
-        }
+		function clearTodoList() {
+			const list = document.querySelector("#todo-list");
+			[...list.children].forEach((child) => {
+				if(!child.classList.contains("hidden"))
+					child.remove();
+			});
+		}
+		
 
 </script>

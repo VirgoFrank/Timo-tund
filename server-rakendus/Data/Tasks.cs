@@ -11,5 +11,6 @@ namespace WebApplication1.Data
         public string Title { get; set; }
         public string Desc { get; set; }
         public bool IsChecked { get; set; }
+        public string UserId { get; set; }
     }
 }
