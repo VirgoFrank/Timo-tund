@@ -75,7 +75,6 @@ namespace WebApplication1.Controllers
             {
                 return BadRequest();
             }
-
             _context.Entry(users).State = EntityState.Modified;
 
             try

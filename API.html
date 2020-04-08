@@ -1,248 +1,363 @@
 <!DOCTYPE html>
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 
-    <head>
-        <meta charset="utf-8">
-        <title>TODO</title>
-        <style>
-            body { padding: 1em; }
-            h1 { color: red; }
-            .hidden { display: none !important; }
-            #todo-list {
-                padding: 2em 0;
-            }
-            .row {
-                margin: 0.4em 0;
-                display: flex;
-                align-items: center;
-            }
-            .row > * {
-                padding: 0.2em 0.6em;
-            }
-            .checkbox-bg,input, button {border: 1px solid #d6d8db; padding: 0.3em !important; border-radius: .25rem;}
-            input[type='button'], button { padding: 0.5em 0.9em !important; }
-            input[type='button']:hover, button:hover { background: #e2e3e5; }
-            .checkbox-bg:hover {background: #e2e3e5;}
-            .checkbox-bg.checked {background: #d4edda; border-color: #c3e6cb;}
-            .row > .text {flex: 1; max-width: 30em;}
-            .row input[type='text'] {width: 100%;}
-            input[name='desc'] {display: block; margin:0.2em 0;}
-            input[type='button'] {margin-left: 0.8em;}
-        </style>
-    
-    <!--[if gte mso 9]><xml>
+<head>
+	<meta charset="utf-8">
+	<title>TODO</title>
+	<style>
+		body {
+			padding: 1em;
+		}
+
+		h1 {
+			color: red;
+		}
+
+		.hidden {
+			display: none !important;
+		}
+
+		#todo-list {
+			padding: 2em 0;
+		}
+
+		.row {
+			margin: 0.4em 0;
+			display: flex;
+			align-items: center;
+		}
+
+		.row>* {
+			padding: 0.2em 0.6em;
+		}
+
+		.checkbox-bg,
+		input,
+		button {
+			border: 1px solid #d6d8db;
+			padding: 0.3em !important;
+			border-radius: .25rem;
+		}
+
+		input[type='button'],
+		button {
+			padding: 0.5em 0.9em !important;
+		}
+
+		input[type='button']:hover,
+		button:hover {
+			background: #e2e3e5;
+		}
+
+		.checkbox-bg:hover {
+			background: #e2e3e5;
+		}
+
+		.checkbox-bg.checked {
+			background: #d4edda;
+			border-color: #c3e6cb;
+		}
+
+		.row>.text {
+			flex: 1;
+			max-width: 30em;
+		}
+
+		.row input[type='text'] {
+			width: 100%;
+		}
+
+		input[name='desc'] {
+			display: block;
+			margin: 0.2em 0;
+		}
+
+		input[type='button'] {
+			margin-left: 0.8em;
+		}
+	</style>
+
+	<!--[if gte mso 9]><xml>
     <mso:CustomDocumentProperties>
     <mso:ReferenceId msdt:dt="string">90e866ce-7003-4c70-9606-5ac52b4aba2c</mso:ReferenceId>
     </mso:CustomDocumentProperties>
     </xml><![endif]-->
-    </head>
+</head>
 
 <body>
 	<div id="login-form">
 		<input type="text" name="username" value="timo.triisa@tptlive.ee2"></input>
 		<input type="password" name="password" value="qwe123"></input>
-		newtasks
-		<div class="newtask">
-				<input type="text" name="NewTitle">
-				<input type="text" name="NewDesc">
-			</div>
-		<button onClick="login()">Login</button>
+		<button onClick="Login()">Login</button>
 		<button onClick="register()">Register</button>
 	</div>
 
 
 
-    <div id="app">
-		
-		<button onclick="save()">Add task</button>
-	
+	<div id="app">
+
+		<!-- <button onclick="save()">Add task</button> -->
+
 		<div id="todo-list">
-			
+
 			<div class="row hidden">
 				<label class="checkbox-bg">
 					<input type="checkbox" name="markedAsDone" onChange="changeCheckLabel(event)">
 				</label>
 				<div class="text">
-					<input  name="title">
-					<input  name="desc">
-					
+					<input name="title">
+					<input name="desc">
+
 				</div>
 				<input type="button" value="Delete">
-                <button onclick="TaskUpdate(event)" type="button" name="Update">Update</button>
-                
-                <!-- <textarea id="TextArea" cols="70" rows="20"></textarea> -->
+				<button onclick="TaskUpdate(event)" type="button" name="Update">Update</button>
+
+				<!-- <textarea id="TextArea" cols="70" rows="20"></textarea> -->
 			</div>
 		</div>
-		<button onclick="addTask()">Lisa uus</button>
-        <button onclick="save()">Save</button>
-        <button onclick="Get()">Get</button>
+		<button onclick="Add()">Lisa uus</button>
 	</div>
 </body>
 
 <script>
 
-class Demo2Api {
-			constructor() {
-				this.baseUrl = "https://localhost:44318/";
-				this.token = null;
+	class Demo2Api {
+		constructor() {
+			this.baseUrl = "https://localhost:44318/";
+			this.token = null;
+		}
+
+		sendRequest(url, method, body, callback) {
+			const options = {
+				method: method,
+				headers: {
+					"Content-Type": "application/json", // ütleb, et see on json
+				},
+				body: JSON.stringify(body), // teeb faili jsoniks
+			};
+
+			if (method === "GET" || method === "DELETE" || method === "OPTION") {
+				delete options.body;
+
+
 			}
-			
-			sendRequest(url, method, body, callback) {
-				const options = {
-					method: method,
-					headers: {
-						"Content-Type": "application/json", // ütleb, et see on json
-					},
-					body: JSON.stringify(body), // teeb faili jsoniks
-				};
-				
-				if(method === "GET" || method === "DELETE" || method === "OPTION"){
-					delete options.body;
-					
-				
-				}
-				
-				
-				if(this.token !== null) {
-					options.headers["Authorization"] = "Bearer "+this.token;
-				}
-				
-				fetch(this.baseUrl+url, options)
+
+
+			if (this.token !== null) {
+				options.headers["Authorization"] = "Bearer " + this.token;
+			}
+
+			fetch(this.baseUrl + url, options)
 				.then((response) => response.json())
 				.then(callback);
-			}
 		}
-		const api = new Demo2Api();
-		
-		class Task {
-			constructor(rawObj) {
-				this.id = null;
-				this.title = "";
-				this.desc = "";
-				this.marked_as_done = false;
+	}
+	const api = new Demo2Api();
+
+
+	let User_token;
+	let UserId;
+
+	class Task {
+		constructor(rawObj) {
+			this.id = null;
+			this.title = "";
+			this.desc = "";
+			this.userId = null;
+			this.isChecked = false;
+		}
+	}
+
+
+	function addTask(task) {
+		console.log(task);
+		let row = document.querySelector("#todo-list > .row.hidden");
+		let newRow = row.cloneNode(true);
+		newRow.classList.remove("hidden");
+
+		if (typeof task !== "undefined") {
+			newRow._task = new Task(task);
+
+			let cb = newRow.querySelector("input[name='markedAsDone']");
+			cb.checked = task.marked_as_done;
+			changeCheckLabel(cb);
+			newRow.querySelector("input[name='title']").value = task.title;
+			newRow.querySelector("input[name='desc']").value = task.desc;
+
+		} else {
+			newRow._task = new Task();
+		}
+
+		let delBtn = newRow.querySelector("input[value=Delete]");
+		delBtn.addEventListener("click", deleteTask);
+
+		document.querySelector("#todo-list").appendChild(newRow);
+	}
+
+	function Login() {
+		let username = document.querySelector("input[name='username']").value;
+		let password = document.querySelector("input[name='password']").value;
+		clearTodoList();
+		fetch('https://localhost:44318/users/get-token', {
+			method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ username: username, password: password })
+		})
+			.then((response) => {
+				return response.json();
+			})
+			.then((access_token) => {
+				console.log(access_token);
+				User_token = access_token;
 				
-				if(typeof rawObj !== "undefined")
-					this.load(rawObj);
-			}
-			
-		
-			delete() {
-				api.sendRequest("/tasks/"+this.id,"DELETE");
-				
-			}
 
-			
-			Update() {
-        if(this.id) {
-            api.sendRequest("/tasks/" + this.id, "PUT", this,
-            (tasks) => {
-                console.log(tasks);
-            });
-        }
 
-        else {
-            api.sendRequest("/tasks", "POST", this,
-            (tasks) => {
-                console.log(tasks);
-            });
-        } 
-    }   
- }  
+				fetch("https://localhost:44318/tasks/get-tasks", {
+					method: "POST",
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ token: access_token }),
+				})
+					.then((response) => {
+						return response.json();
+					})
+					.then((data) => {
+						console.log(data);
+						let arr = data;
+						for (i = 0; i < arr.length; i++) {
+							Add(arr[i]);
+						}
+					})
+			})
+	}
 
- function addTask(task) {
-			console.log(task);
-			let row = document.querySelector("#todo-list > .row.hidden");
-			let newRow = row.cloneNode(true);
-			newRow.classList.remove("hidden");
-			
-			if(typeof task !== "undefined") {
-				newRow._task = new Task(task);
+	function deleteTask(event) {
+		let row = event.currentTarget.parentElement;
+		let container = row.parentElement;
+		container.removeChild(row);
 
-				let cb = newRow.querySelector("input[name='markedAsDone']");
-				cb.checked = task.marked_as_done;
-				changeCheckLabel(cb);
-				newRow.querySelector("input[name='title']").value = task.title;
-				newRow.querySelector("input[name='desc']").value = task.desc;
-				
-			} else {
-				newRow._task=new Task();
-			}
-			
+		fetch("https://localhost:44318/tasks/" + row._task.id, {
+			method: "DELETE", body: JSON.stringify(
+				{ id: row._task.id}),
+			headers: {
+				"Content-Type": "application/json", // ütleb, et see on json
+			},
+		})
+
+	}
+
+	function register() {
+
+		let username = document.querySelector("input[name='username']").value;
+		let password = document.querySelector("input[name='password']").value;
+		clearTodoList();
+		fetch('https://localhost:44318/users/', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ username: username, password: password })
+		})
+	}
+
+
+	function TaskUpdate(event) {
+
+		let row = event.currentTarget.parentElement;
+
+		let title = row.querySelector("input[name='title']").value;
+		let desc = row.querySelector("input[name='desc']").value;
+		let isChecked = row.querySelector("input[name='markedAsDone']").checked;
+
+		fetch("https://localhost:44318/tasks/" + row._task.id, {
+			method: "PUT", body: JSON.stringify({ id: row._task.id, title, desc, isChecked, userId: row._task.userId }),
+			headers: {
+				"Content-Type": "application/json", // ütleb, et see on json
+			},
+		})
+	}
+
+	function Add(task) {
+		console.log(task);
+		let row = document.querySelector("#todo-list > .row.hidden");
+		let newRow = row.cloneNode(true);
+		newRow.classList.remove("hidden");
+
+		if (task == undefined || task === null) {
+			newRow._task = new Task(task);
+			newRow._task.title = null;
+			newRow._task.desc = null;
+			newRow._task.isChecked = false;
+			newRow._task.id = null;
+			newRow._task.userId = null;
+
+			fetch("https://localhost:44318/tasks/", {
+			method: "POST", body: JSON.stringify({token:User_token})
+			, headers: {
+				"Content-Type": "application/json", // ütleb, et see on json
+			},
+		})
+
+			let cb = newRow.querySelector("input[name='markedAsDone']");
 			let delBtn = newRow.querySelector("input[value=Delete]");
 			delBtn.addEventListener("click", deleteTask);
-			
-			document.querySelector("#todo-list").appendChild(newRow);
+
 		}
-
-        function Get(){
-
-			clearTodoList();
-              fetch('https://localhost:44318/tasks/')
-            .then((response) => {
-				return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-				let arr = data;
-				for(i = 0; i < arr.length; i++){
-					Add(arr[i]);
-				}
-            })
-        }
-
-
-		function Add(task) {
-			console.log(task);
-			let row = document.querySelector("#todo-list > .row.hidden");
-			let newRow = row.cloneNode(true);
-			newRow.classList.remove("hidden");
+		else {
+			newRow._task = new Task(task);
+			newRow._task.title = task.title;
+			newRow._task.desc = task.desc;
+			newRow._task.isChecked = task.isChecked
+			newRow._task.id = task.id
+			newRow._task.userId = task.userId
 			newRow.querySelector("input[name='title']").value = task.title;
 			newRow.querySelector("input[name='desc']").value = task.desc;
 
 			let cb = newRow.querySelector("input[name='markedAsDone']");
-				cb.checked = task.isChecked;
-				
+			cb.checked = task.isChecked;
 
-			document.querySelector("#todo-list").appendChild(newRow);
+
+			let delBtn = newRow.querySelector("input[value=Delete]");
+			delBtn.addEventListener("click", deleteTask);
+
 		}
 
-		// function login() {
-		// 	let username = document.querySelector("input[name='username']").value;
-		// 	let password = document.querySelector("input[name='password']").value;
-			
-		// 	api.sendRequest("/users/get-token","POST",{username, password},
-		// 		(user) => {
-		// 			console.log(user);
-		// 			//api.token = user.access_token;
-					
-		// 			api.sendRequest("/tasks", "GET", null, (tasks) => {
-		// 				clearTodoList();
-		// 				tasks.forEach(addTask);
-						
-		// 			});
-		// 		}
-		// 	);
-		
-		// }
 
-		function save(){
+		document.querySelector("#todo-list").appendChild(newRow);
+	}
+
+
+
+	function save() {
 		let title = document.querySelector("input[name='NewTitle']").value;
 		let desc = document.querySelector("input[name='NewDesc']").value;
-			fetch("https://localhost:44318/tasks/", {method:"POST",body:JSON.stringify({title,desc,isChecked: false,
-        userId: "1"}),headers: {
-						"Content-Type": "application/json", // ütleb, et see on json
-					},})
-					clearTodoList();
-			Get();
-		}
 
-		function clearTodoList() {
-			const list = document.querySelector("#todo-list");
-			[...list.children].forEach((child) => {
-				if(!child.classList.contains("hidden"))
-					child.remove();
-			});
-		}
-		
+		fetch("https://localhost:44318/tasks/", {
+			method: "POST", body: JSON.stringify({
+				title, desc, isChecked: false,
+				userId: "1"
+			}), JSON: stringify({})
+			, headers: {
+				"Content-Type": "application/json", // ütleb, et see on json
+			},
+		})
+		clearTodoList();
+		Get();
+	}
+
+	function clearTodoList() {
+		const list = document.querySelector("#todo-list");
+		[...list.children].forEach((child) => {
+			if (!child.classList.contains("hidden"))
+				child.remove();
+		});
+	}
+
 
 </script>
