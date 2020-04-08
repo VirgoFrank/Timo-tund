@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\opilane\\Desktop\\Timo-tund\\server-rakendus\\WebApplication1.csproj": {}
+    "C:\\Users\\Mina\\Desktop\\kooli_asjad\\Timo-tund\\server-rakendus\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\opilane\\Desktop\\Timo-tund\\server-rakendus\\WebApplication1.csproj": {
+    "C:\\Users\\Mina\\Desktop\\kooli_asjad\\Timo-tund\\server-rakendus\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\opilane\\Desktop\\Timo-tund\\server-rakendus\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\Mina\\Desktop\\kooli_asjad\\Timo-tund\\server-rakendus\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\opilane\\Desktop\\Timo-tund\\server-rakendus\\WebApplication1.csproj",
-        "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\opilane\\Desktop\\Timo-tund\\server-rakendus\\obj\\",
+        "projectPath": "C:\\Users\\Mina\\Desktop\\kooli_asjad\\Timo-tund\\server-rakendus\\WebApplication1.csproj",
+        "packagesPath": "C:\\Users\\Mina\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mina\\Desktop\\kooli_asjad\\Timo-tund\\server-rakendus\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\opilane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mina\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],

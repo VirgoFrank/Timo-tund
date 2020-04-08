@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,12 +22,34 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        [HttpPost]
+        public async Task<ActionResult<Users>> Register(Users users)
         {
-            return await _context.Users.ToListAsync();
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+
+            users.token = new String(stringChars);
+            _context.Users.Add(users);
+            await _context.SaveChangesAsync();
+
+            return await _context.Users.FindAsync(users.Id);
         }
+
+        [HttpPost("{get-token}")]
+        public async Task<ActionResult<string>> Get_Token(Users users)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(i => i.Username == users.Username && i.Password == users.Password);
+
+            return user.token;
+        }
+       
 
         // GET: api/Users/5
         [HttpGet("{id}")]
@@ -77,14 +100,14 @@ namespace WebApplication1.Controllers
         // POST: api/Users
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
-        {
-            _context.Users.Add(users);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<Users>> PostUsers(Users users)
+        //{
+        //    _context.Users.Add(users);
+        //    await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
-        }
+        //    return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+        //}
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]

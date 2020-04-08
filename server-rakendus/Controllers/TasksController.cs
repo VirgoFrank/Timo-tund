@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
+using WebApplication1.Data.Migrations;
 
 namespace WebApplication1.Controllers
 {
@@ -25,6 +26,15 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult<IEnumerable<Tasks>>> GetTasks()
         {
             return await _context.Tasks.ToListAsync();
+        }
+        [HttpPost("{get-tasks}")]
+        public async Task<ActionResult<IEnumerable<Tasks>>> GetTasks(Users users)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(i => i.token == users.token);
+
+            var tasks = await _context.Tasks.Where(i => i.UserId == user.Id.ToString()).ToListAsync();
+
+            return tasks;
         }
 
         // GET: api/Tasks/5
@@ -77,8 +87,14 @@ namespace WebApplication1.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Tasks>> PostTasks(Tasks tasks)
+        public async Task<ActionResult<Tasks>> PostTasks(Users user)
         {
+            var currentUser = await _context.Users.FirstOrDefaultAsync
+                                     (i => i.token == user.token);
+
+            Tasks tasks = new Tasks();
+            tasks.UserId = currentUser.Id.ToString();
+
             _context.Tasks.Add(tasks);
             await _context.SaveChangesAsync();
 
